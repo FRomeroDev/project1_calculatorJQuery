@@ -1,0 +1,83 @@
+/* Resetting default margin and padding for all elements */
+* {
+  margin: 0;
+  padding: 0;
+}
+/* Styling for the background div */
+.background {
+  /* Creating a gradient background from white to black */
+  background-image: linear-gradient(45deg, white, black);
+  height: 100vh; /* Making it cover the entire viewport height */
+  color: grey; /* Setting the text color to grey */
+  font-family: Arial, Helvetica, sans-serif; /* Choosing a font family */
+  text-align: center; /* Center-aligning the text within this div */
+}
+/* Styling for the calculator container */
+.calculator {
+  position: absolute; /* Positioning the calculator absolutely within its parent */
+  background-color: black; /* Setting the background color to black */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    1
+  ); /* Adding a fallback background color with full opacity */
+  top: 50%; /* Placing it at the vertical center of its parent */
+  left: 50%; /* Placing it at the horizontal center of its parent */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Centering it precisely within its parent */
+  border-radius: 15px; /* Adding rounded corners */
+  padding: 15px; /* Adding padding inside the container */
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5); /* Adding a shadow effect */
+}
+/* Styling for buttons within the table */
+table button {
+  width: 50px; /* Setting the width of buttons */
+  height: 50px; /* Setting the height of buttons */
+  font-size: 30px; /* Adjusting the font size */
+  cursor: pointer; /* Changing the cursor to a pointer on hover */
+  margin: 3px; /* Adding a small margin between buttons */
+  background-color: rgb(31, 31, 31); /* Setting the default background color */
+  border: none; /* Removing borders */
+  color: #fff; /* Setting text color to white */
+}
+
+/* Styling for buttons on hover */
+table button:hover {
+  background-color: rgb(
+    123,
+    123,
+    123
+  ); /* Changing the background color on hover */
+}
+
+/* Styling for the display area */
+#display {
+  background-color: white; /* Setting the background color to white */
+  width: 215px; /* Setting the width */
+  height: 50px; /* Setting the height */
+  margin: 5px; /* Adding margin */
+  font-size: 35px; /* Adjusting the font size */
+  font-weight: bold; /* Making the text bold */
+  color: black; /* Setting the text color to black */
+  text-align: right; /* Right-aligning the text */
+  padding: 5px; /* Adding padding inside the display area */
+  overflow-x: auto; /* Adding horizontal scrollbar if needed */
+  overflow-y: hidden; /* Hiding vertical scrollbar */
+}
+
+/* Styling for the calculate button */
+button.calculate {
+  background-color: orange; /* Setting the background color to orange */
+}
+
+/* Styling for the calculate button on hover */
+button.calculate:hover {
+  background-color: rgb(
+    234,
+    104,
+    12
+  ); /* Changing the background color on hover */
+}

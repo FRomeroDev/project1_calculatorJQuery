@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="content-type" content="text/html;" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <title>Calculadora JQuery</title>
+
+</head>
+
+<body>
+    <div class="background">
+        <h1></h1>
+        <div class="calculator">
+            <p id="display"></p>
+            <table>
+                <tr>
+                    <td><button class="operator" onclick="clearDisplay()">C</button></td>
+                    <td><button class="operator" onclick​="clearLastChar()">Del</button>
+                    </td>
+                    <td><button class="operator" onclick="inputNum += '/'">/</button></td>
+                    <td><button class="operator" onclick="inputNum += '*'">*</button></td>
+                </tr>
+                <tr>
+                    <td><button class="number" onclick="inputNum += '7'">7</button></td>
+                    <td><button class="number" onclick="inputNum += '8'">8</button></td>
+                    <td><button class="number" onclick="inputNum += '9'">9</button></td>
+                    <td><button class="operator" onclick="inputNum += '-'">-</button></td>
+                </tr>
+                <tr>
+                    <td><button class="number" onclick="inputNum += '4'">4</button></td>
+                    <td><button class="number" onclick="inputNum += '5'">5</button></td>
+                    <td><button class="number" onclick="inputNum += '6'">6</button></td>
+                    <td><button class="operator" onclick="inputNum += '+'">+</button></td>
+                </tr>
+                <tr>
+                    <td><button class="number" onclick="inputNum += '1'">1</button></td>
+                    <td><button class="number" onclick="inputNum += '2'">2</button></td>
+                    <td><button class="number" onclick="inputNum += '3'">3</button></td>
+                    <td rowspan="2"><button class="calculate" style="height:110px;" onclick="calculate()">=</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button class="number" style="width: 106px;" onclick="inputNum += '0'">0</button>
+                    </td>
+                    <td><button class="buttonDot" onclick="inputNum += ','">,</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+            $(document).ready(function () {
+                var inputNum = ''; // Variable to store user input
+                var displayText = ''; // Variable to display text on the screen
+                var result = 0; // Variable to store the result of the operation
+
+                function updateDisplay() {
+                    $('#display').text(inputNum); // Update the content of the element with ID 'display' with the value of inputNum
+                }
+
+                function clearDisplay() {
+                    operator = ''; // Clear the operator variable
+                    displayText = ''; // Clear the display text variable
+                    updateDisplay(); // Update the screen
+                }
+
+                function clearLastChar() {
+                    displayText = displayText.slice(0, -1); // Remove the last character from the display text
+                    updateDisplay(); // Update the screen
+                }
+
+                $('.number').click(function () {
+                    let value = $(this).text(); // Get the value of the clicked numeric button
+                    if (value === ',' && inputNum.includes(',')) {
+                        // Prevent adding a second decimal point if one already exists
+                        return;
+                    }
+                    inputNum += value; // Add the digit to the current number
+                    updateDisplay(); // Update the screen
+                });
+
+                $('.operator').click(function () {
+                    let clickedOperator = $(this).text(); // Get the operator from the clicked button
+                    if (clickedOperator === 'C') {
+                        inputNum = ''; // Clear the input if 'C' (clear) is clicked
+                    } else if (clickedOperator === 'Del') {
+                        inputNum = inputNum.slice(0, -1); // Remove the last character from the input if 'Del' (delete) is clicked
+                    } else {
+                        inputNum += '' + clickedOperator + ''; // Add the operator to the current input
+                    }
+                    updateDisplay(); // Update the screen
+                });
+
+                $('.calculate').click(function () {
+                    try {
+                        // Replace ',' (comma) with '.' (period) in the input to make eval() work with decimals
+                        let expression = inputNum.replace(/,/g, '.');
+                        result = eval(expression); // Evaluate the mathematical expression and store the result
+                        $('#display').text(result); // Display the result on the screen
+                        inputNum = result.toString(); // Update the input with the result
+                    } catch (error) {
+                        $('#display').text('Error'); // Display 'Error' on the screen in case of an error
+                        inputNum = ''; // Clear the input in case of an error
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
